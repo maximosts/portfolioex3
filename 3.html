@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name List</title>
+</head>
+<body>
+    <h1>Name List</h1>
+    <input type="text" id="nameInput" placeholder="Enter a name">
+    <button onclick="addName()">Add</button>
+
+    <div id="nameList">
+        <h2>Names in Ascending Order:</h2>
+        <ul id="names"></ul>
+    </div>
+
+    <script>
+        const namesArray = []; // Array to store the names.
+
+        function addName() {
+            const nameInput = document.getElementById("nameInput");
+            const name = nameInput.value.trim();
+
+            if (name !== "") {
+                namesArray.push(name);
+                nameInput.value = ""; // Clear the input field.
+
+                // Sort the names in ascending order.
+                namesArray.sort(function(a, b) {
+                    return a.localeCompare(b);
+                });
+
+                // Update the list of names.
+                const namesList = document.getElementById("names");
+                namesList.innerHTML = ""; // Clear the list.
+
+                for (const n of namesArray) {
+                    const listItem = document.createElement("li");
+                    listItem.innerText = n;
+                    namesList.appendChild(listItem);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Number Checker</title>
+</head>
+<body>
+    <h1>Prime Number Checker</h1>
+    <p>Enter an integer, and we'll display all prime numbers less than or equal to it:</p>
+
+    <input type="number" id="numberInput" placeholder="Enter an integer">
+    <button onclick="findPrimes()">Find Primes</button>
+
+    <div id="primeNumbers"></div>
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function findPrimes() {
+            const n = parseInt(document.getElementById("numberInput").value);
+            if (!isNaN(n)) {
+                let primeNumbers = [];
+                for (let i = 2; i <= n; i++) {
+                    if (isPrime(i)) {
+                        primeNumbers.push(i);
+                    }
+                }
+                document.getElementById("primeNumbers").innerHTML = "Prime numbers less than or equal to " + n + ": " + primeNumbers.join(", ");
+            } else {
+                document.getElementById("primeNumbers").innerHTML = "Please enter a valid integer.";
+            }
+        }
+    </script>
+</body>
+</html>

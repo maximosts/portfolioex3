@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Picker</title>
+    <style>
+        .color-palette {
+            display: flex;
+            flex-direction: row;
+        }
+        .color-box {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+        #color-history {
+            float: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Picker</h1>
+    <div class="color-palette">
+        <div class="color-box" style="background-color: red;" onclick="setColor('red')"></div>
+        <div class="color-box" style="background-color: green;" onclick="setColor('green')"></div>
+        <div class="color-box" style="background-color: blue;" onclick="setColor('blue')"></div>
+        <div class="color-box" style="background-color: yellow;" onclick="setColor('yellow')"></div>
+        <div class="color-box" style="background-color: magenta;" onclick="setColor('magenta')"></div>
+        <div class="color-box" style="background-color: cyan;" onclick="setColor('cyan')"></div>
+    </div>
+    
+    <p style="color: black;">Selected Color: <span id="selectedColor">None</span></p>
+    <div id="color-history">
+        <h2>Color History:</h2>
+        <ul id="history-list"></ul>
+    </div>
+
+    <script>
+        function setColor(color) {
+            document.getElementById("selectedColor").innerText = color;
+            document.getElementById("selectedColor").style.color = color;
+
+            // Add the selected color to the history list
+            const historyList = document.getElementById("history-list");
+            const listItem = document.createElement("li");
+            listItem.innerText = color;
+            historyList.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
